@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+
+	<events>
+		<event id="option">
+			<rollover>
+				<css name="optionOverCss">this</css>
+				<function name="optionOver">this</function>
+			</rollover>
+			
+			<rollout>
+				<css name="optionOutCss">this</css>
+				<function name="optionOut">this</function>
+			</rollout>
+			
+			<click>
+				<css name="optionOverCss">this</css>
+				<function name="select">this</function>
+			</click>
+		</event>
+		
+		<event id="btnover">
+			<rollover>
+				<css name="btnOverCss">this</css>
+			</rollover>
+			
+			<rollout>
+				<css name="btnOutCss">this</css>
+			</rollout>
+		</event>
+		
+		<event id="submit">
+			<click>
+				<function name="submit">this</function>
+				<function name="enableNext">true</function>     
+			</click>
+		</event>
+		
+		<event id="reset">
+			<click>
+				<function name="reset">this</function>
+			</click>
+		</event>
+		
+		<event id="sca">
+			<click>
+				<function name="sca">this</function>
+			</click>
+		</event>
+	
+	</events>
+  
+	<image id="bg" x="0" y="0" anim="alpha" animtime="2" animdelay="0"><![CDATA[lib/assets/bg_nasa.jpg]]></image>
+
+	<text id="title" x="50" y="40" width="900" anim="top" animtime="1" animdelay="0"><![CDATA[<h2>Multiple Choice Question</h2>]]></text>
+	<image id="logo" x="880" y="15" anim="top" animtime="1" animdelay="0"><![CDATA[lib/assets/essemble_logo_100x36.png]]></image>
+
+	<text id="question" x="50" y="100" height="" width="370" anim="show" animtime="1" animdelay="1"><![CDATA[<p class="white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><p class="white">Select your answer then Confirm.</p>]]></text>
+
+	<custom id="mcq" type="mcq" x="match" y="+=30" anim="none" animtime="0" animdelay="1" ease="Regular.easeOut">
+		<settings correctx="-35" correcty="2" attempts="3"/>
+		<question id="q1" x="0" y="0" width="900" height="300" anim="alpha" animtime="0" ease="Regular.easeOut" animdelay="0">
+			
+			<!--option 1-->
+			<option correct="false">
+				<text id="option1" x="0" y="0" height="" width="330" anim="left" animtime="0.5" animdelay="1.1" ease="Regular.easeOut" event="option" className="optionBox"><![CDATA[<p class="white">Sed ut perspiciatis unde omnis iste natus</p>]]></text>
+			</option>
+			
+			<!--option 2-->	
+			<option correct="false">
+				<text id="option2" x="match" y="+=10" height="" width="330" anim="left" animtime="0.5" animdelay="1.2" ease="Regular.easeOut" event="option" className="optionBox"><![CDATA[<p class="white">Accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>]]></text>
+			</option>
+			
+			<!--option 3-->
+			<option correct="true">
+				<text id="option3" x="match" y="+=10" height="" width="330" anim="left" animtime="0.5" animdelay="1.3" ease="Regular.easeOut" event="option" className="optionBox"><![CDATA[<p class="white">Veritatis et quasi architecto beatae (correct)</p>]]></text>
+			</option>
+			<!--/options-->
+			
+			<!--confirm & reset buttons-->
+			<button id="submitBtn" x="match" y="+=20" width="" anim="disabled" animtime="0.3" animdelay="0.3" event="btnover,submit"><![CDATA[<p class="genericBtn">Confirm</p>]]></button>
+			<button id="resetBtn" x="+=15" y="match" width="" anim="disabled" animtime="0.3" animdelay="0.3" event="btnover,reset"><![CDATA[<p class="genericBtn">Reset</p>]]></button>
+			<button id="scaBtn" x="+=15" y="match" width="" anim="hidden" animtime="0.3" animdelay="0.3" event="btnover,sca"><![CDATA[<p class="genericBtn">See correct answer</p>]]></button>
+			
+			
+			<!--feedbacks-->
+			<!--option specific feedback, overrides generic feedback-->
+			<fb id="1">
+				<text id="option1Txt" x="450" y="0" height="" width="350" className="lightBox" anim="right" animtime="0.8" animdelay="0"><![CDATA[<p class="black">That's not right and this is specific feedback for option 1.</p><p class="black">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>]]></text>
+			</fb>
+				
+			<fb id="pass">
+				<text id="passTxt" x="450" y="0" height="" width="350" anim="right" animtime="0.8" animdelay="0" className="lightBox" ><![CDATA[<p class="black">That's correct.</p><p class="black">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>]]></text>
+								
+			</fb>
+			
+			<fb id="partial">	
+				<text id="partialTxt" x="450" y="0" height="" width="350" anim="right" animtime="0.8" animdelay="0" className="lightBox" ><![CDATA[<p class="black">That's not right.</p><p class="black">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>]]></text>
+			</fb>
+			
+			<fb id="fail">	
+				<text id="failTxt" x="450" y="0" height="" width="350" anim="right" animtime="0.8" animdelay="0" className="lightBox" ><![CDATA[<p class="black">That's not right.</p><p class="black">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>]]></text>
+			</fb>
+			
+			<fb id="generic">	
+				<text id="genericTxt" x="450" y="0" height="" width="350" anim="alpha" animtime="0.8" animdelay="0" className="lightBox"><![CDATA[<p class="black">Generic feedback.</p><p class="black">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>]]></text>
+			</fb>
+			<!-- end feedbacks -->
+		</question>
+	</custom>
+</data>

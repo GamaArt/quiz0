@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="user-scalable = yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>Multiple Choice Quiz Engine</title>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+<link type="text/css" rel="stylesheet" href="lib/css/styles.css" media="screen"/>
+</head>
+
+<body>
+	<div id="center">
+	    <div id="container"></div>
+    </div>
+
+    <script src="lib/js/jquery.js"></script>
+    <script src="lib/js/jquery.easing.1.3.js"></script>
+    <script src="lib/js/jquery.transit.min.js"></script>
+    <script src="lib/js/essemble_core.min.js"></script>
+    <script src="lib/js/mcq.js"></script>
+    <script src="lib/js/quiz.js"></script>
+    
+    
+    <script>
+    var quiz;
+
+    function init(){
+        //prevent body overflow and scrolling on iPad   
+        if(isiPad){
+            $("body").css("overflow","hidden");
+            $("body").css("position","fixed");
+        }
+        
+        //create the screen object which loads the xml and creates all screen elements
+        quiz = new Screen({id:"myQuiz", xmlPath:"lib/xml/form_example.xml"});
+        
+        //choose a target div
+        var targetDiv = get("container");
+        
+        //load it
+        quiz.load(targetDiv,false);
+    }
+
+    //provided as example only
+    function myFormFunction(){
+        //do something with the email address and score
+        var userEmail = get("userEmail").value;
+        var scoreInHiddenForm = get("userScore").value;
+        var oQuiz = quiz.getElementByType("custom")._custom;
+        var scoreAsPercentage = oQuiz.getScore(true);
+        var scoreAsNumberOfQsPassed = oQuiz.getScore(false);
+
+        var msg = userEmail + "\n";
+        msg += "score in hidden form:" + scoreInHiddenForm + "\n";
+        msg += "score as % (available at any point in javascript):" + scoreAsPercentage + "\n";
+        msg += "score as number (available at any point in javascript):" + scoreAsNumberOfQsPassed;
+        alert(msg);
+
+        var data = {user_email:userEmail,user_score:scoreAsPercentage}
+
+        $.ajax({
+          type: "POST",
+          url: "script.php",
+          data: data,
+          success: successFunc,
+          dataType: ""
+        });
+    }
+
+    function successFunc(){
+        alert("success callback")
+    }
+
+    function clearInitialText(){
+        var inputVal = get("userEmail").value;
+        if( inputVal == "Enter your e-mail address"){ get("userEmail").value = ""}
+    }
+
+    function evalUserEmail(){
+        //simple example of enabling/disabling
+        var inputVal = get("userEmail").value;
+        var submitBtn = get("submitBtn");
+
+        if( inputVal.indexOf("@") == -1 || inputVal.indexOf(".") == -1){
+            submitBtn.disabled = true;
+            $(submitBtn).css("background","#ccc");
+            $(submitBtn).css("cursor","default");
+        } else {
+            submitBtn.disabled = false;
+            $(submitBtn).css("background","#4b4b40");
+            $(submitBtn).css("cursor","pointer");
+        }
+    }
+    
+    //kick off
+    $(document).ready(function() {
+        init();
+    });
+    
+    </script>
+
+</body>
+</html>
+

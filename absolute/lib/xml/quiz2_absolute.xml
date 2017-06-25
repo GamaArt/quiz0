@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+
+    <events>
+    	<event id="screenloaded">
+			<click>
+				<function name="begin"></function>
+			</click>
+		</event>
+
+		<event id="option">
+			<rollover>
+				<css name="optionOverCss">this</css>
+				<function name="optionOver">this</function>
+			</rollover>
+			
+			<rollout>
+				<css name="optionOutCss">this</css>
+				<function name="optionOut">this</function>
+			</rollout>
+			
+			<click>
+				<css name="optionOverCss">this</css>
+				<function name="select">this</function>
+			</click>
+		</event>
+		
+		<event id="btnover">
+			<rollover>
+				<css name="btnOverCss">this</css>
+			</rollover>
+			
+			<rollout>
+				<css name="btnOutCss">this</css>
+			</rollout>
+		</event>
+
+		<event id="select">
+			<click>
+				<css name="optionOverCss">this</css>
+				<function name="select">this</function>
+			</click>
+		</event>
+
+		<event id="submit">
+			<click>
+				<function name="submit">this</function>
+			</click>
+		</event>
+
+		<event id="reset">
+			<click>
+				<function name="reset">this</function>
+			</click>
+		</event>
+
+        <event id="loadNextQuestion">
+            <click>
+                <function name="loadNextQuestion">this</function>
+            </click>
+        </event>
+		
+		<event id="restart">
+            <click>
+                <function name="restart">this</function>
+            </click>
+        </event>
+    </events>
+
+    <image id="bg" x="0" y="0" anim="alpha" animtime="2" animdelay="0"><![CDATA[lib/assets/bg_nasa.jpg]]></image>
+
+	<text id="title" x="50" y="40" width="900" anim="top" animtime="1" animdelay="0"><![CDATA[<h2>Multiple Choice Question</h2>]]></text>
+	<image id="logo" x="880" y="15" anim="top" animtime="1" animdelay="0"><![CDATA[lib/assets/essemble_logo_100x36.png]]></image>
+
+    <!--timed quiz-->
+    <custom type="quiz" id="quiz" x="0" y="0">
+		<settings timer="false" timerx="580" timery="130"/>
+        
+		<!-- question 1 -->
+        <question id="q1" time="15">
+
+        	<text id="question1" x="50" y="100" height="" width="370" anim="show" animtime="1" animdelay="0"><![CDATA[<p class="white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><p class="white">Select your answer then Confirm.</p>]]></text>
+			
+			<!--option 1-->
+			<option correct="false">
+				<text id="option1" x="50" y="260" height="" width="330" anim="left" animtime="0.5" animdelay="1.1" ease="Regular.easeOut" event="option" className="optionBox"><![CDATA[<p class="white">Sed ut perspiciatis unde omnis iste natus</p>]]></text>
+			</option>
+			
+			<!--option 2-->	
+			<option correct="false">
+				<text id="option2" x="match" y="+=10" height="" width="330" anim="left" animtime="0.5" animdelay="1.2" ease="Regular.easeOut" event="option" className="optionBox"><![CDATA[<p class="white">Accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>]]></text>
+			</option>
+			
+			<!--option 3-->
+			<option correct="true">
+				<text id="option3" x="match" y="+=10" height="" width="330" anim="left" animtime="0.5" animdelay="1.3" ease="Regular.easeOut" event="option" className="optionBox"><![CDATA[<p class="white">Veritatis et quasi architecto beatae (correct)</p>]]></text>
+			</option>
+			<!--/options-->
+			
+			<!--confirm & reset buttons-->
+			<button id="submitBtn" x="match" y="+=20" width="" anim="disabled" animtime="0.3" animdelay="0.3" event="btnover,submit"><![CDATA[<p class="genericBtn">Confirm</p>]]></button>
+			<!--<button id="resetBtn" x="+=15" y="match" width="" anim="disabled" animtime="0.3" animdelay="0.3" event="btnover,reset"><![CDATA[<p class="genericBtn">Reset</p>]]></button>-->
+			
+			
+			<!--feedbacks-->
+			<!--option specific feedback, overrides generic feedback-->
+			<fb id="pass">
+				<text id="passTxt" x="450" y="260" height="" width="350" anim="right" animtime="0.8" animdelay="0" className="lightBox" ><![CDATA[<p class="black">That's correct.</p><p class="black">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>]]></text>
+
+				<button id="nextQBtn" x="match" y="+=20" anim="right" animtime="0.8" animdelay="0" event="btnover,loadNextQuestion"><![CDATA[Try the next one]]></button>			
+			</fb>
+			
+			<fb id="partial">	
+				<text id="partialTxt" x="450" y="260" height="" width="350" anim="right" animtime="0.8" animdelay="0" className="lightBox" ><![CDATA[<p class="black">That's not right.</p><p class="black">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>]]></text>
+
+				<button id="nextQBtn" x="match" y="+=20" anim="right" animtime="0.8" animdelay="0" event="btnover,loadNextQuestion"><![CDATA[Try the next one]]></button>
+			</fb>
+			
+			<fb id="fail">	
+				<text id="failTxt" x="450" y="260" height="" width="350" anim="right" animtime="0.8" animdelay="0" className="lightBox" ><![CDATA[<p class="black">That's not right.</p><p class="black">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>]]></text>
+
+				<button id="nextQBtn" x="match" y="+=20" anim="right" animtime="0.8" animdelay="0" event="btnover,loadNextQuestion"><![CDATA[Try the next one]]></button>
+			</fb>
+			<!-- end feedbacks -->
+    		
+		</question>
+		
+		
+		<!-- question 2 -->
+        <question id="q2" time="15" event="">
+
+    		<text id="question2" x="50" y="100" height="" width="370" anim="show" animtime="1" animdelay="0"><![CDATA[<p class="white">Second question.</p><p class="white">Select your answer then Confirm.</p>]]></text>
+			
+			<!--option 1-->
+			<option correct="true">
+				<text id="option1" x="50" y="260" height="" width="330" anim="left" animtime="0.5" animdelay="1.1" ease="Regular.easeOut" event="option" className="optionBox"><![CDATA[<p class="white">Option 1 (correct)</p>]]></text>
+			</option>
+			
+			<!--option 2-->	
+			<option correct="false">
+				<text id="option2" x="match" y="+=10" height="" width="330" anim="left" animtime="0.5" animdelay="1.2" ease="Regular.easeOut" event="option" className="optionBox"><![CDATA[<p class="white">Option 2</p>]]></text>
+			</option>
+			
+			<!--option 3-->
+			<option correct="false">
+				<text id="option3" x="match" y="+=10" height="" width="330" anim="left" animtime="0.5" animdelay="1.3" ease="Regular.easeOut" event="option" className="optionBox"><![CDATA[<p class="white">Option 3</p>]]></text>
+			</option>
+			<!--/options-->
+			
+			<!--confirm & reset buttons-->
+			<button id="submitBtn" x="match" y="+=20" width="" anim="disabled" animtime="0.3" animdelay="0.3" event="btnover,submit"><![CDATA[<p class="genericBtn">Confirm</p>]]></button>
+			<!--<button id="resetBtn" x="+=15" y="match" width="" anim="disabled" animtime="0.3" animdelay="0.3" event="btnover,reset"><![CDATA[<p class="genericBtn">Reset</p>]]></button>-->
+			
+			
+			<!--feedbacks-->
+			<!--option specific feedback, overrides generic feedback-->
+			<fb id="pass">
+				<text id="passTxt" x="450" y="260" height="" width="350" anim="right" animtime="0.8" animdelay="0" className="lightBox" ><![CDATA[<p class="black">That's correct.</p><p class="black">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>]]></text>
+
+				<button id="nextQBtn" x="match" y="+=20" anim="right" animtime="0.8" animdelay="0" event="btnover,loadNextQuestion"><![CDATA[How did I do?]]></button>			
+			</fb>
+			
+			<fb id="partial">	
+				<text id="partialTxt" x="450" y="260" height="" width="350" anim="right" animtime="0.8" animdelay="0" className="lightBox" ><![CDATA[<p class="black">That's not right.</p><p class="black">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>]]></text>
+
+				<button id="nextQBtn" x="match" y="+=20" anim="right" animtime="0.8" animdelay="0" event="btnover,loadNextQuestion"><![CDATA[How did I do?]]></button>
+			</fb>
+			
+			<fb id="fail">	
+				<text id="failTxt" x="450" y="260" height="" width="350" anim="right" animtime="0.8" animdelay="0" className="lightBox" ><![CDATA[<p class="black">That's not right.</p><p class="black">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>]]></text>
+
+				<button id="nextQBtn" x="match" y="+=20" anim="right" animtime="0.8" animdelay="0" event="btnover,loadNextQuestion"><![CDATA[How did I do?]]></button>
+			</fb>
+			<!-- end feedbacks -->
+		</question>
+
+
+        <!--score screen-->
+        <score masteryscore="80">
+            <fb id="pass" event="">
+				
+				<text id="pass_txt" x="50" y="120" width="400" anim="left" animtime="0.5" animdelay="0">
+				<![CDATA[<p class="p_32 white">CONGRATULATIONS!</p><p class="p_24 white">You scored [score]%</p>]]></text>
+				
+				<button id="goBtn" x="match" y="+=40" height="40" width="140" anim="left" animtime="0.5" animdelay="0" event="btnover,restart"><![CDATA[Play again?]]></button>
+                
+            </fb>
+            
+            <fb id="fail" event="">
+               
+                    <text id="fail_txt" x="50" y="120" width="400" anim="left" animtime="0.5" animdelay="0"><![CDATA[<p class="p_32 white">BAD LUCK!</p><p class="p_24 white">You scored [score]%<br/></p><p class="p_24 white">Why not have another go?</p>]]></text>
+                        
+					<button id="goBtn" x="match" y="+=45" height="40" width="120" anim="left" animtime="0.5" animdelay="0" event="btnover,restart"><![CDATA[Start again]]></button>
+ 
+            </fb>
+        </score>
+
+    </custom>
+
+</data>
+

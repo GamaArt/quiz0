@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+
+    <events>
+		<event id="btnover">
+			<rollover>
+				<css name="btnOverCss">this</css>
+			</rollover>
+			
+			<rollout>
+				<css name="btnOutCss">this</css>
+			</rollout>
+		</event>
+
+		<event id="optionover">
+			<rollover>
+				<css name="optionOverCss">this</css>
+			</rollover>
+			
+			<rollout>
+				<css name="optionOutCss">this</css>
+			</rollout>
+		</event>
+		
+		<event id="selectandsubmit">
+			<click>
+				<css name="optionOverCss">this</css>
+				<function name="select">this</function>
+				<function name="submit">this</function>
+			</click>
+		</event>
+
+		<event id="select">
+			<click>
+				<css name="optionOverCss">this</css>
+				<function name="select">this</function>
+			</click>
+		</event>
+
+		<event id="submit">
+			<click>
+				<function name="submit">this</function>
+			</click>
+		</event>
+
+		<event id="reset">
+			<click>
+				<function name="reset">this</function>
+			</click>
+		</event>
+		
+        <event id="begin">
+            <click>
+                <anim type="hide" animtime="0.5" animdelay="0" oncomplete="0">openingText</anim>
+                <function name="begin">this</function>
+            </click>
+        </event>
+
+        <event id="loadNextQuestion">
+            <click>
+                <function name="loadNextQuestion">this</function>
+            </click>
+        </event>
+
+        <event id="loadPreviousQuestion">
+            <click>
+                <function name="loadPreviousQuestion">this</function>
+            </click>
+        </event>
+		
+		<event id="restart">
+            <click>
+                <function name="restart">this</function>
+            </click>
+        </event>
+
+         <event id="showbg1">
+            <click>
+            	<anim type="hide" animtime="2" animdelay="0" oncomplete="0">bg3,bg2</anim>
+            </click>
+        </event>
+
+        <event id="showbg2">
+            <click>
+                <anim type="show" animtime="2" animdelay="0" oncomplete="0">bg2</anim>
+            </click>
+        </event>
+
+         <event id="showbg3">
+            <click>
+                <anim type="show" animtime="2" animdelay="0" oncomplete="0">bg3</anim>
+            </click>
+        </event>
+    </events>
+
+    <image id="bg1" x="0" y="0" anim="show" animtime="2" animdelay="0"><![CDATA[lib/assets/bg_nasa1.jpg]]></image>
+    <image id="bg2" x="0" y="0" anim="hide" animtime="0" animdelay="0"><![CDATA[lib/assets/bg_nasa2.jpg]]></image>
+    <box id="bg3" x="0" y="0" width="1000" height="550" anim="hide" animtime="0" animdelay="0" className="blackBox" />
+	
+    <!--opening text-->
+    <box id="openingText" x="175" y="100" width="650" height="355" anim="left" animtime="0.5" animdelay="1" ease="Regular.easeOut" className="orangeBox">
+
+    	<text id="title" x="65" y="60" width="500" anim="none" animtime="0.5" animdelay="0"><![CDATA[<h1>Multiple Choice Quiz Engine</h1><p class="p_16">Welcome to this short quiz.</p><p class="p_16">For each question, select the answer before your time runs out!</p>]]></text>
+
+    	<button id="goBtn" x="match" y="+=40" height="40" width="100" anim="show" animtime="0.5" animdelay="0" event="btnover,begin"><![CDATA[Let's go!]]></button>
+        
+    </box>
+
+    <!--timed quiz-->
+    <custom type="quiz" id="quiz" x="0" y="0">
+		<settings timer="true" timerx="580" timery="130"/>
+        
+		<!-- question 1 -->
+        <question id="q1" time="15">
+
+        	<box id="questionBox" x="90" y="72" width="820" height="400" anim="left" animtime="0.5" animdelay="0" ease="Regular.easeOut" className="orangeBox" />
+
+    		<text id="question1" target="questionBox" x="60" y="70" width="400" anim="left" animtime="0.5" animdelay="0"><![CDATA[<p class="p_24">Will I need to be a JavaScript programmer to build a quiz?</p>]]></text>
+			
+			<!--option 1 -->
+			<option correct="false">
+				<text id="option1_1" target="questionBox" x="match" y="+=50" width="180" anim="show" animtime="0.5" animdelay="0.5" ease="Regular.easeOut" event="optionover,selectandsubmit" className="optionBox"><![CDATA[<p class="p_16 white cent">Yes</p>]]></text>
+			</option>
+			
+			<!--option 2 -->	
+			<option correct="true">
+				<text id="option1_2" target="questionBox" x="match" y="+=20" width="180" anim="show" animtime="0.5" animdelay="0.6" ease="Regular.easeOut" event="optionover,selectandsubmit" className="optionBox"><![CDATA[<p class="p_16 white cent">No</p>]]></text>
+			</option>
+			<!--/options -->
+			
+			<!-- feedbacks -->
+			<fb id="pass" event="">	
+				<box id="fb" target="questionBox" x="520" y="0" width="250" height="200" anim="right" animtime="0.5" animdelay="0" ease="Regular.easeOut">
+					<text id="txt1" x="0" y="70" width="230" anim="none" animtime="0" animdelay="0"><![CDATA[<p class="p_24">Correct!</p><p>All the questions, text, images, events and buttons are defined in an XML file so you can create your own quiz without changing any JavaScript.</p><p>You can also customise the timer using your own graphics and by changing some simple settings and css. Or choose not to have a timer at all.</p>]]></text>
+			
+					<button id="nextQBtn" x="0" y="+=20" anim="none" animtime="0" animdelay="0" event="btnover,loadNextQuestion"><![CDATA[Try the next one]]></button>
+				</box>
+			</fb>
+			
+			<fb id="fail" event="">	
+				<box id="fb" target="questionBox" x="520" y="0" width="250" height="200" anim="right" animtime="0.5" animdelay="0" ease="Regular.easeOut">
+					<text id="txt1" x="0" y="70" width="230" anim="none" animtime="0" animdelay="0"><![CDATA[<p class="p_24">Nope!</p><p>All the questions, text, images, events and buttons are defined in an XML file so you can create your own quiz without changing any JavaScript.</p><p>You can also customise the timer using your own graphics and by changing some simple settings and css. Or choose not to have a timer at all.</p>]]></text>
+			
+					<button id="nextQBtn" x="0" y="+=20" anim="none" animtime="0" animdelay="0" event="btnover,loadNextQuestion"><![CDATA[Try the next one]]></button>
+				</box>
+			</fb>
+    		
+		</question>
+		
+		
+		<!-- question 2 -->
+        <question id="q2" time="15" event="">
+
+    		<box id="questionBox" x="90" y="72" width="820" height="400" anim="left" animtime="0.5" animdelay="0" ease="Regular.easeOut" className="orangeBox" />
+
+    		<text id="question2" target="questionBox" x="60" y="70" width="400" anim="left" animtime="0.5" animdelay="0"><![CDATA[<p class="p_24">The number of questions I can add is:</p>]]></text>
+			
+			<!--option 1 -->
+			<option correct="false">
+				<text id="option2_1" target="questionBox" x="match" y="+=50" width="380" anim="show" animtime="0.5" animdelay="0.5" ease="Regular.easeOut" event="optionover,selectandsubmit" className="optionBox"><![CDATA[<p class="p_16 white">Limited to 5</p>]]></text>
+			</option>
+			
+			<!--option 2 -->	
+			<option correct="false">
+				<text id="option2_2" target="questionBox" x="match" y="+=20" width="380" anim="show" animtime="0.5" animdelay="0.6" ease="Regular.easeOut" event="optionover,selectandsubmit" className="optionBox"><![CDATA[<p class="p_16 white">Limited to 10</p>]]></text>
+			</option>
+			
+			<!--option 3 -->
+			<option correct="true">
+				<text id="option2_3" target="questionBox" x="match" y="+=20" width="380" anim="show" animtime="0.5" animdelay="0.7" ease="Regular.easeOut" event="optionover,selectandsubmit" className="optionBox"><![CDATA[<p class="p_16 white">Unlimited</p>]]></text>
+			</option>
+			<!--/options -->
+			
+			<!-- feedbacks -->
+			<fb id="pass" event="">	
+				<box id="fb" target="questionBox" x="520" y="0" width="250" height="200" anim="right" animtime="0.5" animdelay="0" ease="Regular.easeOut">
+					<text id="txt1" x="0" y="150" width="230" anim="none" animtime="0" animdelay="0"><![CDATA[<p class="p_24">Correct!</p><p>You can add as many questions as you like.</p>]]></text>
+			
+					<button id="nextQBtn" x="0" y="+=20" anim="none" animtime="0" animdelay="0" event="btnover,loadNextQuestion"><![CDATA[How did I do?]]></button>
+				</box>
+			</fb>
+			
+			<fb id="fail" event="">	
+				<box id="fb" target="questionBox" x="520" y="0" width="250" height="200" anim="right" animtime="0.5" animdelay="0" ease="Regular.easeOut">
+					<text id="txt1" x="0" y="150" width="230" anim="none" animtime="0" animdelay="0"><![CDATA[<p class="p_24">No!</p><p>You can add as many questions as you like.</p>]]></text>
+			
+					<button id="nextQBtn" x="0" y="+=20" anim="none" animtime="0" animdelay="0" event="btnover,loadNextQuestion"><![CDATA[How did I do?]]></button>
+				</box>
+			</fb>
+		</question>
+		
+		<!--generic timeout text-->
+		<timeout>
+            <box id="timeOut" x="175" y="100" width="650" height="355" anim="left" animtime="1" animdelay="0" ease="Bounce.easeOut" className="orangeBox">
+
+            	<image id="img1" x="230" y="40" anim="none" animtime="0" animdelay="0"><![CDATA[lib/assets/raygun.png]]></image>
+
+				<text id="timeoutTxt" x="50" y="102" width="200" anim="none" animtime="0" animdelay="0"><![CDATA[<p class="p_42">Times up!</p>]]></text>
+		
+				<button id="startAgainBtn" x="match" y="+=30" height="40" width="100" anim="none" animtime="0" animdelay="0" event="btnover,restart,showbg1"><![CDATA[Start again]]></button>
+			</box>
+        </timeout>
+
+
+        <!--score screen-->
+        <score masteryscore="80">
+            <fb id="pass" event="showbg3">
+              
+                <box id="passTextBox" x="90" y="72" width="820" height="400" anim="left" animtime="0.5" animdelay="0" ease="Regular.easeOut" className="orangeBox">
+
+					<image id="passimage" x="260" y="50" anim="scaleup" animtime="5" animdelay="0.5"><![CDATA[lib/assets/saturn.png]]></image>
+					
+					<text id="pass_txt" x="50" y="50" width="400" anim="none" animtime="0" animdelay="0">
+					<![CDATA[<p class="p_32">CONGRATULATIONS!</p><p class="p_24">You scored [score]%</p><br/><p class="p_16_black">Enter your e-mail address:</p><input type="hidden" id="userScore" name="userScore" value="[score]" /><input type="email" id="userEmail" name="userEmail" value="Enter your e-mail address" style="color:#666; width:200px; height:40px; padding:0px 0px 0px 5px; background:#fff;" onFocus="clearInitialText();" onkeyup="evalUserEmail()"/>&nbsp;&nbsp;<input style="width:100px; height:40px; cursor:default; background:#ccc;" id="submitBtn" type="submit" value="Submit" onClick="myFormFunction()" disabled>]]></text>
+					
+					<button id="goBtn" x="match" y="+=40" height="40" width="140" anim="none" animtime="0" animdelay="0" event="btnover,restart,showbg1"><![CDATA[Play again?]]></button>
+
+					<!--<text id="pass_txt" x="50" y="50" width="400" anim="none" animtime="0" animdelay="0">
+					<![CDATA[<p class="p_32">CONGRATULATIONS!</p><p class="p_24">You scored [score]%</p><br/><p class="p_16_black">Enter your e-mail address:</p><form name="contactform" method="post" action="send_form_email.php">
+					<input type="hidden" id="userScore" name="userScore" value="[score]" />
+					<input class="user" type="text" name="first_name" onfocus="if(this.value == 'Name') { this.value = ''; }" value="Name">
+					<input class="user" type="text" name="email" onfocus="if(this.value == 'john@example.com') { this.value = ''; }" value="john@example.com">
+					<input id="sub" class="user" type="submit" value="Submit">
+					</form>]]></text>-->
+					
+					
+                </box>
+            </fb>
+            
+            <fb id="fail" event="showbg3">
+                <box id="failTextBox" x="90" y="72" width="820" height="400" anim="left" animtime="0.5" animdelay="0" ease="Regular.easeOut" className="orangeBox">
+
+                    <image id="img1" x="80" y="50" anim="none" animtime="0" animdelay="0"><![CDATA[lib/assets/raygun.png]]></image>
+
+                    <text id="fail_txt" x="520" y="140" width="300" anim="none" animtime="0" animdelay="0"><![CDATA[<p class="p_32">BAD LUCK!</p><p class="p_24">You scored [score]%<br/></p><p class="p_24">Why not have another go?</p>]]></text>
+                        
+					<button id="goBtn" x="match" y="+=45" height="40" width="120" anim="none" animtime="0.5" animdelay="0" event="btnover,restart,showbg1"><![CDATA[Start again]]></button>
+                </box>  
+            </fb>
+        </score>
+
+    </custom>
+
+</data>
+
